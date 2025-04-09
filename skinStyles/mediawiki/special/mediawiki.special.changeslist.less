@@ -14,27 +14,26 @@
 /* default.less */
 .mw-plusminus {
 	&-pos {
-		color: var( --color-text-success );
+		color: var( --color-success );
 	}
 
 	&-neg {
-		color: var( --color-text-error );
+		color: var( --color-destructive );
 	}
 
 	&-null {
-		color: var( --color-base--subtle );
+		color: var( --color-subtle );
 	}
 }
 
 .mw-changeslist {
 	h4 {
-		z-index: 1; // Needed to cover the timeline dots
+		z-index: @z-index-above-content; // Needed to cover the timeline dots
 		padding: var( --space-sm ) 0;
 		margin-bottom: 0;
 		font-size: var( --font-size-x-small );
-		font-weight: var( --font-weight-normal );
-		color: var( --color-base--subtle );
-		letter-spacing: 0.05em;
+		font-weight: var( --font-weight-medium );
+		color: var( --color-subtle );
 	}
 
 	&-line {
@@ -44,12 +43,27 @@
 		}
 
 		&-inner {
-			color: var( --color-base--subtle );
+			color: var( --color-subtle );
+		}
+
+		/* Add nested indent line */
+		> td:first-child {
+			position: relative;
+
+			&::before {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 5px;
+				width: 2px;
+				content: '';
+				background: var( --border-color-base );
+			}
 		}
 	}
 
 	&-separator {
-		color: var( --color-base--subtle );
+		color: var( --color-subtle );
 	}
 }
 
@@ -66,16 +80,8 @@
 		padding: var( --space-md );
 		font-size: var( --font-size-small );
 		background: var( --color-surface-2 );
-		border-radius: var( --border-radius--medium );
+		border-radius: var( --border-radius-medium );
 	}
-}
-
-/* Skeleton screen loading */
-body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
-	padding: var( --space-md );
-	font-size: var( --font-size-small );
-	background: var( --color-surface-2 );
-	border-radius: var( --border-radius--medium );
 }
 
 .client-js {
@@ -87,14 +93,14 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
 		padding: 0; /* Shift padding to button only */
 		margin-bottom: 16px; /* Same margin between rcfilter and saved filter */
 		border-color: var( --border-color-base );
-		border-radius: var( --border-radius--small );
+		border-radius: var( --border-radius-base );
 
 		/* Extend button to full width */
 		.oo-ui-buttonElement-frameless.oo-ui-labelElement:first-child {
 			display: block;
 			background: var( --color-surface-2 );
-			border-top-left-radius: var( --border-radius--small );
-			border-top-right-radius: var( --border-radius--small );
+			border-top-left-radius: var( --border-radius-base );
+			border-top-right-radius: var( --border-radius-base );
 
 			.oo-ui-buttonElement-button {
 				display: block;
@@ -118,13 +124,13 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
  * Sometimes wiki transclude those pages and these styles will break regular pages
  */
 .ns-special {
-	.mw-changeslist h4 {
-		.citizen-sticky-header( 0, false, false );
-	}
-
-	// Disable sticky header
+	/* Disable sticky header due to performance issue on long RC */
 	#citizen-page-header-sticky-sentinel {
 		display: none;
+	}
+
+	.mw-changeslist h4 {
+		.mixin-citizen-sticky-header( false, false );
 	}
 }
 
@@ -142,10 +148,10 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		left: 4px;
-		width: 1px;
+		left: ~'calc( var( --border-width-thick ) + 1px )';
+		width: var( --border-width-thick );
 		content: '';
-		background: var( --border-color-interactive );
+		background: var( --border-color-base );
 	}
 }
 
@@ -159,14 +165,14 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
 .mw-contributions-list li {
 	padding: var( --space-sm ) var( --space-xs ) !important;
 	margin: 0 0 0 16px !important;
-	color: var( --color-base--subtle );
-	border-radius: var( --border-radius--small );
+	color: var( --color-subtle );
+	border-radius: var( --border-radius-base );
 
 	&:hover {
-		background-color: var( --background-color-quiet--hover );
+		background-color: var( --background-color-button-quiet--hover );
 
 		&::before {
-			background-color: var( --color-base--emphasized );
+			background-color: var( --color-emphasized );
 		}
 	}
 
@@ -178,8 +184,9 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
 		width: 8px;
 		height: 8px;
 		margin-top: 7px;
+		outline: 4px solid var( --color-surface-0 );
 		content: '';
-		background-color: var( --color-base--subtle );
+		background-color: var( --color-subtle );
 		border-radius: 100%;
 	}
 
@@ -190,5 +197,5 @@ body:not( .mw-rcfilters-ui-initialized ) .mw-rcfilters-head {
 
 .mw-pager-navigation-bar {
 	margin: var( --space-md ) 0;
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }

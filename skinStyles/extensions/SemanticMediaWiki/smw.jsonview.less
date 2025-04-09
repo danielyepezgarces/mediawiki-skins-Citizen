@@ -16,35 +16,36 @@
 /* smw/smw.jsonview.css */
 .smw-jsonview-button-group-left {
 	height: 40px;
+	margin-left: 0;
 }
 
 .smw-jsonview-button-group-left input {
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-jsonview-button {
 	height: 40px;
-	background-color: var( --color-primary );
+	background-color: var( --color-progressive );
 	transition-duration: 0ms;
 }
 
 .smw-jsonview-button:first-child {
 	border-right-color: var( --border-color-base );
-	border-radius: var( --border-radius--small ) 0 0 var( --border-radius--small );
+	border-radius: var( --border-radius-base ) 0 0 var( --border-radius-base );
 }
 
 .smw-jsonview-button:last-child {
-	border-radius: 0 var( --border-radius--small ) var( --border-radius--small ) 0;
+	border-radius: 0 var( --border-radius-base ) var( --border-radius-base ) 0;
 }
 
 .smw-jsonview-button:hover {
-	background-color: var( --color-primary--hover );
+	background-color: var( --color-progressive--hover );
 }
 
 // Added active state
 .smw-jsonview-button:active {
-	background-color: var( --color-primary--active );
+	background-color: var( --color-progressive--active );
 }
 
 .jsonview ul {
@@ -52,11 +53,14 @@
 }
 
 .smw-jsonview-menu {
-	height: 40px;
+	display: flex !important;
+	justify-content: space-between;
+	height: auto;
 	padding: var( --space-xs ) 0;
+	font-size: var( --font-size-small );
 	background-color: var( --color-surface-0 );
 	border: 0;
-	border-bottom: 1px solid var( --border-color-base );
+	border-bottom: var( --border-width-base ) solid var( --border-color-base );
 }
 
 .smw-jsonview-menu + pre {
@@ -68,16 +72,16 @@
 .smw-jsonview-menu .smw-jsonview-button {
 	color: var( --color-base );
 	background-color: transparent;
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-jsonview-menu .smw-jsonview-button:hover {
-	background-color: var( --background-color-quiet--hover );
+	background-color: var( --background-color-button-quiet--hover );
 }
 
 // Added active state
 .smw-jsonview-menu .smw-jsonview-button:active {
-	background-color: var( --background-color-quiet--active );
+	background-color: var( --background-color-button-quiet--active );
 }
 
 .smw-jsonview-menu .smw-jsonview-button:first-child {

@@ -25,9 +25,9 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\Citizen\Hooks;
 
-use Config;
-use ExtensionRegistry;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
 
 /**
@@ -49,7 +49,7 @@ class ResourceLoaderHooks {
 			'wgCitizenEnablePreferences' => $config->get( 'CitizenEnablePreferences' ),
 			'wgCitizenOverflowInheritedClasses' => $config->get( 'CitizenOverflowInheritedClasses' ),
 			'wgCitizenOverflowNowrapClasses' => $config->get( 'CitizenOverflowNowrapClasses' ),
-			'wgCitizenSearchModule' => $config->get( 'CitizenSearchModule' )
+			'wgCitizenSearchModule' => $config->get( 'CitizenSearchModule' ),
 		];
 	}
 
@@ -79,13 +79,15 @@ class ResourceLoaderHooks {
 		Config $config
 	) {
 		return [
+			'isAdvancedSearchExtensionEnabled' => ExtensionRegistry::getInstance()->isLoaded( 'AdvancedSearch' ),
+			'isMediaSearchExtensionEnabled' => ExtensionRegistry::getInstance()->isLoaded( 'MediaSearch' ),
 			'wgCitizenSearchGateway' => $config->get( 'CitizenSearchGateway' ),
 			'wgCitizenSearchDescriptionSource' => $config->get( 'CitizenSearchDescriptionSource' ),
 			'wgCitizenMaxSearchResults' => $config->get( 'CitizenMaxSearchResults' ),
+			'wgArticlePath' => $config->get( MainConfigNames::ArticlePath ),
 			'wgScript' => $config->get( MainConfigNames::Script ),
 			'wgScriptPath' => $config->get( MainConfigNames::ScriptPath ),
-			'wgSearchSuggestCacheExpiry' => $config->get( MainConfigNames::SearchSuggestCacheExpiry ),
-			'isMediaSearchExtensionEnabled' => ExtensionRegistry::getInstance()->isLoaded( 'MediaSearch' ),
+			'wgSearchSuggestCacheExpiry' => $config->get( MainConfigNames::SearchSuggestCacheExpiry )
 		];
 	}
 }

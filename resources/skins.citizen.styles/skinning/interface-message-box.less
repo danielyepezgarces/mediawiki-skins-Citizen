@@ -10,13 +10,13 @@
 .mw-message-box {
 	padding: var( --space-sm ) var( --space-md );
 	overflow: hidden;
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 	word-wrap: break-word;
 	/* Standard property is `overflow-wrap` */
 	overflow-wrap: break-word;
 	background-color: var( --color-surface-2 );
-	border: 1px solid var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border: var( --border-width-base ) solid var( --border-color-base );
+	border-radius: var( --border-radius-base );
 
 	/* Ensure box inner spacing is not all over the place no matter what element is only child. */
 	> :only-child {
@@ -29,18 +29,15 @@
 	}
 
 	&-error {
-		background-color: var( --background-color-destructive );
-		border-color: var( --background-color-destructive );
+		background-color: var( --background-color-destructive-subtle );
 	}
 
 	&-warning {
-		background-color: var( --background-color-warning );
-		border-color: var( --background-color-warning );
+		background-color: var( --background-color-warning-subtle );
 	}
 
 	&-success {
-		background-color: var( --background-color-success );
-		border-color: var( --background-color-success );
+		background-color: var( --background-color-success-subtle );
 	}
 }
 

@@ -8,9 +8,9 @@
 */
 
 .mw-editsection {
+	float: right; // Can't target the container so have to use to float
 	display: flex;
 	align-items: center;
-	float: right; // Can't target the container so have to use to float
 	margin-left: var( --space-sm );
 	-webkit-user-select: none;
 	user-select: none;
@@ -24,42 +24,24 @@
 	// Fallback text button if extensions register those
 	a {
 		font-size: var( --font-size-small );
-		border-radius: var( --border-radius--small );
-
-		&::before {
-			filter: var( --filter-invert );
-		}
+		color: var( --color-base );
+		border-radius: var( --border-radius-base );
 
 		&:hover {
-			background-color: var( --background-color-quiet--hover );
+			background-color: var( --background-color-button-quiet--hover );
 		}
 
 		&:active {
-			background-color: var( --background-color-quiet--hover );
+			background-color: var( --background-color-button-quiet--hover );
 		}
-	}
-}
 
-.citizen-editsection-icon {
-	width: 1.875rem;
-	height: 1.875rem;
-	text-indent: -9999px; // Hide text
-	opacity: var( --opacity-icon-base );
-	transition: var( --transition-hover );
-	transition-property: opacity;
-
-	&::before {
-		.resource-loader-icon;
-		display: block;
-		background-size: var( --size-icon );
-	}
-
-	&:hover {
-		opacity: var( --opacity-icon-base--hover );
-	}
-
-	&:active {
-		opacity: var( --opacity-icon-base--active );
+		&.citizen-ui-icon {
+			width: @min-size-interactive-pointer;
+			height: @min-size-interactive-pointer;
+			padding: calc( ( @min-size-interactive-pointer - var( --size-icon ) ) / 2 );
+			font-size: 0;
+			text-indent: -9999px; // Hide text
+		}
 	}
 }
 

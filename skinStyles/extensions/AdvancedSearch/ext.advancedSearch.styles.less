@@ -10,7 +10,7 @@
 
 .mw-advancedSearch-container {
 	margin-top: var( --space-xs );
-	border-bottom: 1px solid var( --border-color-base );
+	border-bottom: var( --border-width-base ) solid var( --border-color-base );
 }
 
 // Align with Citizen label styles
@@ -18,9 +18,8 @@
 .advancedsearch-namespacesPreview-label {
 	margin-right: var( --space-xs );
 	font-size: var( --font-size-small );
-	font-weight: var( --font-weight-normal );
-	color: var( --color-base--subtle );
-	letter-spacing: 0.05em;
+	font-weight: var( --font-weight-medium );
+	color: var( --color-subtle );
 }
 
 .mw-advancedSearch-fieldContainer {
@@ -28,7 +27,7 @@
 	margin-top: 0;
 	background: var( --color-surface-2 );
 	border: 0;
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 
 	fieldset {
 		margin-top: var( --space-md );
@@ -37,9 +36,8 @@
 
 	.oo-ui-labelElement > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
 		font-size: var( --font-size-small );
-		font-weight: var( --font-weight-normal );
-		color: var( --color-base--subtle );
-		letter-spacing: 0.05em;
+		font-weight: var( --font-weight-medium );
+		color: var( --color-subtle );
 		background: var( --color-surface-2 );
 	}
 }
@@ -59,12 +57,12 @@
 
 			&:hover {
 				color: inherit;
-				background-color: var( --background-color-quiet--hover );
+				background-color: var( --background-color-button-quiet--hover );
 			}
 
 			// Added active state
 			&:active {
-				background-color: var( --background-color-quiet--active );
+				background-color: var( --background-color-button-quiet--active );
 			}
 
 			// HACK: Flip indicator when expanded
@@ -87,7 +85,7 @@
 
 .mw-advancedSearch-namespace-selection-header {
 	> .mw-advancedSearch-namespace-search-in-label {
-		font-weight: var( --font-weight-semibold );
+		font-weight: var( --font-weight-semi-bold );
 	}
 }
 
@@ -96,11 +94,11 @@
 	margin-top: 0;
 	background: var( --color-surface-2 );
 	border: 0;
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .mw-advancedSearch-namespace-border {
-	border-top: 1px solid var( --border-color-base );
+	border-top: var( --border-width-base ) solid var( --border-color-base );
 	border-bottom: 0;
 }
 
@@ -109,7 +107,7 @@
 }
 
 .mw-advancedSearch-namespaceFilter .oo-ui-tagMultiselectWidget-handle {
-	border-radius: 0 0 var( --border-radius--small ) var( --border-radius--small );
+	border-radius: 0 0 var( --border-radius-base ) var( --border-radius-base );
 }
 
 .mw-advancedSearch-namespaceFilter .oo-ui-tagMultiselectWidget-input .oo-ui-inputWidget-input {
@@ -118,11 +116,11 @@
 
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagItemWidget.oo-ui-widget-enabled {
 	&.selected {
-		background-color: var( --background-color-primary--hover );
-		border-color: var( --color-primary );
+		background-color: var( --background-color-progressive-subtle );
+		border-color: var( --color-progressive );
 	}
 }
 
 .oo-ui-popupWidget-popup .mw-advancedSearch-tooltip-head {
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }

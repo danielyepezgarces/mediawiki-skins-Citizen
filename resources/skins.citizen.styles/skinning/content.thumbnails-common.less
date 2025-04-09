@@ -8,10 +8,8 @@
  */
 
 /* @noflip */
-div.floatleft,
-table.floatleft,
-div.floatright,
-table.floatright {
+.floatleft,
+.floatright {
 	margin: 0;
 }
 
@@ -23,21 +21,17 @@ div.tright {
 
 .thumbcaption {
 	// Sync with rounded corner
-	padding-right: var( --border-radius--small );
-	// Sync with rounded corner
-	padding-left: var( --border-radius--small );
+	padding-inline: var( --border-radius-base );
 	margin-top: var( --space-xs );
-	color: var( --color-base--subtle );
+	font-weight: var( --font-weight-medium );
+	color: var( --color-subtle );
 	text-align: center;
-	letter-spacing: 0.025em;
 }
 
 div.thumbinner {
 	// Avoid overflow
 	max-width: 100%;
-	margin-right: auto;
-	// Center thumbnail without float
-	margin-left: auto;
+	margin-inline: auto;
 	/* new block formatting context,
 	 * to clear background from floating content */
 	overflow: hidden;
@@ -54,20 +48,18 @@ div.thumbinner {
 @media ( min-width: @min-width-breakpoint-tablet ) {
 	/* @noflip */
 	div.tright,
-	div.floatright,
-	table.floatright {
+	.floatright {
 		float: right;
-		margin-left: var( --space-lg );
 		clear: right;
+		margin-left: var( --space-lg );
 	}
 
 	/* @noflip */
 	div.tleft,
-	div.floatleft,
-	table.floatleft {
+	.floatleft {
 		float: left;
-		margin-right: var( --space-lg );
 		clear: left;
+		margin-right: var( --space-lg );
 	}
 
 	.thumbcaption {

@@ -18,9 +18,9 @@
 .pi-caption {
 	font-size: var( --font-size-x-small );
 	font-style: normal;
+	font-weight: var( --font-weight-medium );
 	// Align with Citizen caption styles
-	color: var( --color-base--subtle );
-	letter-spacing: 0.025em;
+	color: var( --color-subtle );
 }
 
 .portable-infobox {
@@ -29,13 +29,13 @@
 
 .portable-infobox .pi-title {
 	font-size: var( --font-size-x-large );
-	line-height: var( --line-height-sm );
+	line-height: var( --line-height-xx-small );
 }
 
 .portable-infobox .pi-header {
 	font-size: var( --font-size-medium );
-	font-weight: var( --font-weight-semibold );
-	line-height: var( --line-height-sm );
+	font-weight: var( --font-weight-semi-bold );
+	line-height: var( --line-height-xx-small );
 }
 
 .client-js .pi-collapse {
@@ -63,7 +63,7 @@
 .pi-section-navigation .pi-section-tab.current,
 .pi-media-collection .pi-tab-link.current {
 	background: var( --color-surface-2 );
-	border-color: var( --color-primary );
+	border-color: var( --color-progressive );
 	border-bottom-width: 0;
 }
 
@@ -72,14 +72,14 @@
 	margin: 0 4px;
 	background: var( --color-surface-2 );
 	border-width: 2px;
-	border-top-left-radius: var( --border-radius--medium );
-	border-top-right-radius: var( --border-radius--medium );
+	border-top-left-radius: var( --border-radius-medium );
+	border-top-right-radius: var( --border-radius-medium );
 
 	&:hover {
-		border-color: var( --color-primary--hover );
+		border-color: var( --color-progressive--hover );
 	}
 
 	&:active {
-		border-color: var( --color-primary--active );
+		border-color: var( --color-progressive--active );
 	}
 }

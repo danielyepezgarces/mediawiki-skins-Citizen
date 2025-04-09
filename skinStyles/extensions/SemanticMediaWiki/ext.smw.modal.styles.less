@@ -13,15 +13,15 @@
 /* smw/util/ext.smw.modal.css */
 .smw-modal {
 	z-index: @z-index-overlay;
-	background-color: var( --background-color-overlay--lighter );
+	background-color: var( --background-color-backdrop-light );
 }
 
 .smw-modal-title {
 	margin-left: 0;
 	font-size: 1.25rem;
-	font-weight: var( --font-weight-semibold );
-	color: var( --color-base--emphasized );
+	font-weight: var( --font-weight-semi-bold );
 	vertical-align: middle;
+	color: var( --color-emphasized );
 }
 
 /* smw-modal Content */
@@ -29,8 +29,8 @@
 	padding: var( --space-xl );
 	background-color: var( --color-surface-1 );
 	border: 0;
-	border-radius: var( --border-radius--medium );
-	box-shadow: var( --box-shadow-dialog );
+	border-radius: var( --border-radius-medium );
+	box-shadow: var( --box-shadow-drop-xx-large );
 }
 
 .smw-modal-close:hover,
@@ -52,11 +52,11 @@
 
 .smw-modal-header h2 {
 	font-size: 1.25rem;
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 	border-bottom: 0;
 }
 
 .smw-modal-footer {
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 	background-color: transparent;
 }

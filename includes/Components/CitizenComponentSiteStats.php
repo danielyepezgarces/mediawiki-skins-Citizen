@@ -4,27 +4,19 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\Citizen\Components;
 
-use Config;
 use IntlException;
-use Language;
+use MediaWiki\Config\Config;
+use MediaWiki\Language\Language;
+use MediaWiki\SiteStats\SiteStats;
 use MediaWiki\StubObject\StubUserLang;
 use MessageLocalizer;
 use NumberFormatter;
-use SiteStats;
 
 /**
  * CitizenComponentSiteStats component
  * FIXME: Need unit test
  */
 class CitizenComponentSiteStats implements CitizenComponent {
-	/** @var Config */
-	private $config;
-
-	/** @var MessageLocalizer */
-	private $localizer;
-
-	/** @var Language|StubUserLang */
-	private $pageLang;
 
 	private const SITESTATS_ICON_MAP = [
 		'articles' => 'article',
@@ -33,49 +25,31 @@ class CitizenComponentSiteStats implements CitizenComponent {
 		'edits' => 'edit'
 	];
 
-	/**
-	 * @return Config
-	 */
-	private function getConfig(): Config {
-		return $this->config;
-	}
-
-	/**
-	 * @param MessageLocalizer $localizer
-	 * @param Language|StubUserLang $pageLang
-	 */
 	public function __construct(
-		Config $config,
-		MessageLocalizer $localizer,
-		$pageLang
+		private Config $config,
+		private MessageLocalizer $localizer,
+		private Language|StubUserLang $pageLang
 	) {
-		$this->config = $config;
-		$this->localizer = $localizer;
-		$this->pageLang = $pageLang;
 	}
 
 	/**
 	 * Get and format sitestat value
-	 *
-	 * @param string $key
-	 * @param NumberFormatter|null $fmt
-	 * @return string
 	 */
-	private function getSiteStatValue( $key, $fmt ): string {
-		$value = SiteStats::$key() ?? '';
+	private function getSiteStatValue( string $key, ?NumberFormatter $fmt ): string {
+		$value = SiteStats::$key();
 
-		if ( $fmt ) {
-			return $fmt->format( $value );
-		} else {
-			return number_format( $value );
+		if ( !$value ) {
+			return '';
 		}
+
+		return $fmt ? $fmt->format( $value ) : number_format( $value );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
-		$config = $this->getConfig();
+		$config = $this->config;
 		if ( !$config->get( 'CitizenEnableDrawerSiteStats' ) ) {
 			return [];
 		}

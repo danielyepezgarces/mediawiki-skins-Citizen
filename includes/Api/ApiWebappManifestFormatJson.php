@@ -22,19 +22,18 @@
 
 namespace MediaWiki\Skins\Citizen\Api;
 
-use ApiFormatJson;
+use MediaWiki\Api\ApiFormatJson;
 
 /**
  * T282500
  * TODO: This should be merged to core
  */
 class ApiWebappManifestFormatJson extends ApiFormatJson {
+
 	/**
 	 * Return the proper content-type
-	 *
-	 * @return string
 	 */
-	public function getMimeType() {
+	public function getMimeType(): string {
 		return 'application/manifest+json';
 	}
 }

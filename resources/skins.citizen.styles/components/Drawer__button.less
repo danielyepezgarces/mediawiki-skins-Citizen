@@ -1,7 +1,7 @@
 /* TODO: Use SVG animtation to replace CSS icons */
 .citizen-drawer {
-	.citizen-menu__dropdownButton {
-		.citizen-ui-icon {
+	.citizen-dropdown-summary {
+		> .citizen-ui-icon {
 			display: grid;
 			place-content: center;
 			transition: var( --transition-hover );
@@ -12,12 +12,10 @@
 				width: 1.125rem;
 				height: 0.125rem;
 				margin: 0.09375rem 0;
-				background-color: #000;
-				filter: var( --filter-invert );
-				border-radius: var( --border-radius--large );
-				opacity: var( --opacity-icon-base );
-				transition: inherit;
+				background-color: currentcolor;
+				border-radius: var( --border-radius-large );
 				transform-origin: 0.25rem 0;
+				transition: inherit;
 
 				&:first-child {
 					transform-origin: 0 0;
@@ -35,29 +33,19 @@
 		}
 
 		&:hover {
-			.citizen-ui-icon {
+			> .citizen-ui-icon {
 				> span {
-					opacity: var( --opacity-icon-base--hover );
-
 					&:first-child {
 						transform: translate3d( -50%, 0, 0 );
 					}
 				}
 			}
 		}
-
-		&:active {
-			.citizen-ui-icon {
-				> span {
-					opacity: var( --opacity-icon-base--active );
-				}
-			}
-		}
 	}
 
-	&.citizen-menu__dropdown[ open ] {
-		.citizen-menu__dropdownButton {
-			.citizen-ui-icon {
+	> .citizen-dropdown-details[ open ] {
+		> .citizen-dropdown-summary {
+			> .citizen-ui-icon {
 				> span {
 					&:first-child {
 						opacity: 0;
@@ -79,7 +67,7 @@
 			}
 
 			&:hover {
-				.citizen-ui-icon {
+				> .citizen-ui-icon {
 					transform: scale( 0.85 );
 				}
 			}
@@ -89,8 +77,8 @@
 
 // RTL
 .rtl {
-	.citizen-drawer .citizen-menu__dropdownButton:hover {
-		.citizen-ui-icon > span:first-child {
+	.citizen-drawer .citizen-dropdown-summary:hover {
+		> .citizen-ui-icon > span:first-child {
 			transform: translate3d( 50%, 0, 0 );
 		}
 	}

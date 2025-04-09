@@ -23,17 +23,18 @@
 
 namespace MediaWiki\Skins\Citizen;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentFooter;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentMainMenu;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentPageFooter;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentPageHeading;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentPageSidebar;
+use MediaWiki\Skins\Citizen\Components\CitizenComponentPageTools;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentSearchBox;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentSiteStats;
 use MediaWiki\Skins\Citizen\Components\CitizenComponentUserInfo;
 use MediaWiki\Skins\Citizen\Partials\BodyContent;
 use MediaWiki\Skins\Citizen\Partials\Metadata;
-use MediaWiki\Skins\Citizen\Partials\PageTools;
 use MediaWiki\Skins\Citizen\Partials\Theme;
 use SkinMustache;
 use SkinTemplate;
@@ -43,7 +44,9 @@ use SkinTemplate;
  * @ingroup Skins
  */
 class SkinCitizen extends SkinMustache {
-	use GetConfigTrait;
+
+	/** For caching purposes */
+	private ?array $languages = null;
 
 	/**
 	 * Overrides template, styles and scripts module
@@ -73,6 +76,17 @@ class SkinCitizen extends SkinMustache {
 	}
 
 	/**
+	 * Calls getLanguages with caching.
+	 * From Vector 2022
+	 */
+	protected function getLanguagesCached(): array {
+		if ( $this->languages === null ) {
+			$this->languages = $this->getLanguages();
+		}
+		return $this->languages;
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
@@ -84,11 +98,12 @@ class SkinCitizen extends SkinMustache {
 		$title = $this->getTitle();
 		$user = $this->getUser();
 		$pageLang = $title->getPageLanguage();
+		$services = MediaWikiServices::getInstance();
+
 		$isRegistered = $user->isRegistered();
 		$isTemp = $user->isTemp();
 
 		$bodycontent = new BodyContent( $this );
-		$tools = new PageTools( $this );
 
 		$components = [
 			'data-footer' => new CitizenComponentFooter(
@@ -101,12 +116,12 @@ class SkinCitizen extends SkinMustache {
 				$parentData['data-footer']['data-info']
 			),
 			'data-page-heading' => new CitizenComponentPageHeading(
+				$services,
 				$localizer,
 				$out,
 				$pageLang,
 				$title,
-				$parentData['html-title-heading'],
-				$user
+				$parentData['html-title-heading']
 			),
 			'data-page-sidebar' => new CitizenComponentPageSidebar(
 				$localizer,
@@ -115,9 +130,22 @@ class SkinCitizen extends SkinMustache {
 				$title,
 				$user
 			),
+			'data-page-tools' => new CitizenComponentPageTools(
+				$config,
+				$localizer,
+				$title,
+				$user,
+				$services->getPermissionManager(),
+				count( $this->getLanguagesCached() ),
+				$parentData['data-portlets-sidebar'],
+				// These portlets can be unindexed
+				$parentData['data-portlets']['data-languages'] ?? [],
+				$parentData['data-portlets']['data-variants'] ?? []
+			),
 			'data-search-box' => new CitizenComponentSearchBox(
-				$parentData['data-search-box'],
-				$this
+				$localizer,
+				$services->getExtensionRegistry(),
+				$parentData['data-search-box']
 			),
 			'data-site-stats' => new CitizenComponentSiteStats(
 				$config,
@@ -127,6 +155,7 @@ class SkinCitizen extends SkinMustache {
 			'data-user-info' => new CitizenComponentUserInfo(
 				$isRegistered,
 				$isTemp,
+				$services,
 				$localizer,
 				$title,
 				$user,
@@ -141,11 +170,14 @@ class SkinCitizen extends SkinMustache {
 			}
 		}
 
+		// HACK: So that we can use Icon.mustache in Header__logo.mustache
+		$parentData['data-logos']['icon-home'] = 'home';
+
 		return array_merge( $parentData, [
 			// Booleans
 			'toc-enabled' => !empty( $parentData['data-toc'] ),
 			'html-body-content--formatted' => $bodycontent->decorateBodyContent( $parentData['html-body-content'] )
-		], $tools->getPageToolsData( $parentData ) );
+		] );
 	}
 
 	/**
@@ -155,10 +187,8 @@ class SkinCitizen extends SkinMustache {
 	 * They are re-added in the drawer
 	 *
 	 * TODO: Remove this hack when Desktop Improvements separate page and site tools
-	 *
-	 * @return array
 	 */
-	protected function buildNavUrls() {
+	protected function buildNavUrls(): array {
 		$urls = parent::buildNavUrls();
 
 		$urls['upload'] = false;
@@ -174,16 +204,15 @@ class SkinCitizen extends SkinMustache {
 	 * @param string $feature
 	 * @param string $value
 	 */
-	private function addClientPrefFeature( string $feature, string $value = 'standard' ) {
+	private function addClientPrefFeature( string $feature, string $value = 'standard' ): void {
 		$this->getOutput()->addHtmlClasses( $feature . '-clientpref-' . $value );
 	}
 
 	/**
 	 * Set up optional skin features
-	 *
-	 * @param array &$options
 	 */
-	private function buildSkinFeatures( array &$options ) {
+	private function buildSkinFeatures( array &$options ): void {
+		$config = $this->getConfig();
 		$title = $this->getOutput()->getTitle();
 
 		$metadata = new Metadata( $this );
@@ -195,31 +224,29 @@ class SkinCitizen extends SkinMustache {
 		// Add theme handler
 		$skinTheme->setSkinTheme( $options );
 
-		// Disable default ToC since it is handled by Citizen
-		$options['toc'] = false;
-
 		// Clientprefs feature handling
+		$this->addClientPrefFeature( 'citizen-feature-autohide-navigation', '1' );
 		$this->addClientPrefFeature( 'citizen-feature-pure-black', '0' );
 		$this->addClientPrefFeature( 'citizen-feature-custom-font-size' );
 		$this->addClientPrefFeature( 'citizen-feature-custom-width' );
 
-		// Collapsible sections
-		// Load in content pages
-		if ( $title !== null && $title->isContentPage() ) {
-			// Since we merged the sections module into core styles and scripts to reduce RL modules
-			// The style is now activated through the class below
-			if ( $this->getConfigValue( 'CitizenEnableCollapsibleSections' ) === true ) {
+		if ( $title !== null ) {
+			// Collapsible sections
+			if (
+				$config->get( 'CitizenEnableCollapsibleSections' ) === true &&
+				$title->isContentPage()
+			) {
 				$options['bodyClasses'][] = 'citizen-sections-enabled';
 			}
 		}
 
 		// CJK fonts
-		if ( $this->getConfigValue( 'CitizenEnableCJKFonts' ) === true ) {
+		if ( $config->get( 'CitizenEnableCJKFonts' ) === true ) {
 			$options['styles'][] = 'skins.citizen.styles.fonts.cjk';
 		}
 
 		// AR fonts
-		if ( $this->getConfigValue( 'CitizenEnableARFonts' ) === true ) {
+		if ( $config->get( 'CitizenEnableARFonts' ) === true ) {
 			$options['styles'][] = 'skins.citizen.styles.fonts.ar';
 		}
 	}

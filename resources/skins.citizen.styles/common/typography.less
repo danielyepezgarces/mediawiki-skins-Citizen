@@ -22,15 +22,25 @@ input {
 
 b,
 strong {
-	font-weight: var( --font-weight-semibold );
+	font-weight: var( --font-weight-semi-bold );
 }
 
 cite {
 	font-style: inherit;
 }
 
+p + ul,
+p + ol,
+p + table,
+p + dl,
+p + blockquote {
+	margin-top: calc( var( --space-xs ) * -1 );
+}
+
 blockquote {
 	font-style: italic;
+	/* NOTE: This only works for Chromium browsers for now */
+	text-wrap: pretty;
 
 	cite {
 		font-size: var( --font-size-x-small );
@@ -44,28 +54,24 @@ sup {
 }
 
 em {
-	:lang( ja ) &,
-	:lang( ko ) &,
-	:lang( mn ) &,
-	:lang( zh ) & {
+	&:lang( ja ),
+	&:lang( ko ),
+	&:lang( mn ),
+	&:lang( zh ) {
 		/* CJK languages do not use italics for emphasis */
 		font-style: normal;
 		text-emphasis: filled;
 	}
 
-	:lang( ja ) &,
-	:lang( ko ) &,
-	:lang( mn ) & {
+	&:lang( ja ),
+	&:lang( ko ),
+	&:lang( mn ) {
 		text-emphasis-position: over right;
 	}
 
-	:lang( zh ) & {
+	&:lang( zh ) & {
 		text-emphasis-position: under right;
 	}
-}
-
-.mw-logo-wordmark {
-	font-weight: var( --font-weight-semibold );
 }
 
 .citizen-body {

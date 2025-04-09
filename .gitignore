@@ -10,6 +10,7 @@
 .project
 cscope.files
 cscope.out
+/.vscode
 ## NetBeans
 nbproject*
 project.index
@@ -19,10 +20,12 @@ sftp-config.json
 
 # Building & testing
 /composer.lock
+/coverage
 /docs
 /vendor
 /node_modules
 .eslintcache
+package-lock.json
 
 # Operating systems
 ## Mac OS X
@@ -44,4 +47,4 @@ Thumbs.db
 
 # Storybook
 /.storybook/resolve-less-imports/
-/.storybook/integration.less
+/.storybook/integration.less.vscode/

@@ -30,7 +30,7 @@
 	margin-top: var( --space-xxs );
 	background-color: transparent;
 	border: 0;
-	border-bottom: 1px solid var( --border-color-base );
+	border-bottom: var( --border-width-base ) solid var( --border-color-base );
 }
 
 .search-types {
@@ -46,24 +46,24 @@
 	a {
 		padding: var( --space-xs ) var( --space-sm );
 		font-weight: var( --font-weight-medium );
-		color: var( --color-base--emphasized );
-		border-bottom: 2px solid transparent;
+		color: var( --color-emphasized );
+		border-bottom: var( --border-width-thick ) solid transparent;
 
 		&:hover {
 			color: var( -color-primary--hover );
-			border-color: var( --color-primary--hover );
+			border-color: var( --color-progressive--hover );
 		}
 	}
 
 	.current a {
-		color: var( --color-primary );
-		border-color: var( --color-primary );
+		color: var( --color-progressive );
+		border-color: var( --color-progressive );
 	}
 }
 
 .results-info {
 	font-size: var( --font-size-small );
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 	white-space: nowrap;
 }
 
@@ -74,9 +74,8 @@
 
 	h4 {
 		font-size: var( --font-size-small );
-		font-weight: var( --font-weight-normal );
-		color: var( --color-base--subtle );
-		letter-spacing: 0.05em;
+		font-weight: var( --font-weight-medium );
+		color: var( --color-subtle );
 	}
 
 	.divider {
@@ -98,9 +97,9 @@
 	// FIXME: re-enable when this is addressed in core
 	// padding: var( --space-sm ) var( --space-md );
 	// background: var( --color-surface-2 );
-	// border-radius: var( --border-radius--small );
+	// border-radius: var( --border-radius-base );
 	margin-top: 0 !important;
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 }
 
 .mw-search-results {
@@ -122,19 +121,19 @@
 	&-heading {
 		a {
 			// font-size: var( --font-size-x-large );
-			font-weight: var( --font-weight-semibold );
+			font-weight: var( --font-weight-semi-bold );
 		}
 	}
 
 	&-data {
 		font-size: var( --font-size-small );
-		color: var( --color-base--subtle );
+		color: var( --color-subtle );
 	}
 }
 
 .searchmatch {
-	font-weight: var( --font-weight-semibold );
-	color: var( --color-base--emphasized );
+	font-weight: var( --font-weight-semi-bold );
+	color: var( --color-emphasized );
 
 	a & {
 		// If searchmatch is part of the link (usually title), use link color
@@ -147,10 +146,9 @@
 		padding-bottom: var( --space-xs );
 		margin-bottom: 0;
 		font-size: var( --font-size-small );
-		font-weight: var( --font-weight-normal );
-		color: var( --color-base--subtle );
-		letter-spacing: 0.05em;
-		border-bottom: 1px solid var( --border-color-base );
+		font-weight: var( --font-weight-medium );
+		color: var( --color-subtle );
+		border-bottom: var( --border-width-base ) solid var( --border-color-base );
 	}
 }
 

@@ -71,7 +71,7 @@ function isFeatureExcluded( featureName ) {
 function getVisibleClientPreferences( config ) {
 	const active = getClientPreferences();
 	// Order should be based on key in config.json
-	return Object.keys( config ).filter( ( key ) => active.indexOf( key ) > -1 );
+	return Object.keys( config ).filter( ( key ) => active.includes( key ) );
 }
 
 /**
@@ -83,6 +83,9 @@ function toggleDocClassAndSave( featureName, value, config ) {
 	const pref = config[ featureName ];
 	const callback = pref.callback || ( () => {} );
 	clientPrefs.set( featureName, value );
+	// Client preferences often change the layout of the page significantly, so emit
+	// a window resize event for other apps that need to update (T374092).
+	window.dispatchEvent( new Event( 'resize' ) );
 	callback();
 }
 

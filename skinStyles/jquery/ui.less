@@ -11,7 +11,7 @@
 ---------------------------------- */
 .ui {
 	&-dialog {
-		box-shadow: var( --box-shadow-dialog );
+		box-shadow: var( --box-shadow-drop-xx-large );
 
 		.ui-dialog-titlebar {
 			padding: var( --space-md );
@@ -19,7 +19,7 @@
 
 		&.ui-widget-content {
 			background: var( --color-surface-1 );
-			border-radius: var( --border-radius--medium );
+			border-radius: var( --border-radius-medium );
 		}
 	}
 
@@ -33,22 +33,22 @@
 		textarea {
 			padding: var( --space-xxs ) var( --space-xs );
 			/* FIXME: Replace with line-height-small when we import Codex line height */
-			line-height: var( --line-height-sm );
-			color: var( --color-base--emphasized );
+			line-height: var( --line-height-xx-small );
+			color: var( --color-emphasized );
 			// Show background when hovered
 			background-color: transparent;
 			border-color: var( --border-color-interactive );
 
 			&:hover {
 				background-color: var( --color-surface-0 );
-				border-color: var( --color-primary--hover );
+				border-color: var( --color-progressive--hover );
 			}
 
 			&:focus {
-				background-color: var( --color-surface-0 );
-				border-color: var( --color-primary );
 				outline: 0;
-				box-shadow: inset 0 0 0 1px var( --color-primary );
+				background-color: var( --color-surface-0 );
+				border-color: var( --color-progressive );
+				box-shadow: inset 0 0 0 1px var( --color-progressive );
 			}
 		}
 
@@ -57,7 +57,7 @@
 		textarea,
 		button {
 			font-family: var( --font-family-base );
-			border-radius: var( --border-radius--small );
+			border-radius: var( --border-radius-base );
 		}
 
 		&-content {
@@ -68,8 +68,8 @@
 
 		&-header {
 			font-size: 1rem;
-			font-weight: var( --font-weight-semibold );
-			color: var( --color-base--emphasized );
+			font-weight: var( --font-weight-semi-bold );
+			color: var( --color-emphasized );
 			background: var( --color-surface-2--hover );
 			border: 0;
 		}
@@ -99,7 +99,7 @@
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 	background: var( --color-surface-2--hover );
 	border-color: transparent;
 }
@@ -108,13 +108,13 @@
 .ui-state-hover a:hover,
 .ui-state-hover a:link,
 .ui-state-hover a:visited {
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 }
 
 .ui-state-active,
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 	background: var( --color-surface-2--active );
 	border-color: var( --color-surface-2--active );
 }
@@ -122,7 +122,7 @@
 .ui-state-active a,
 .ui-state-active a:link,
 .ui-state-active a:visited {
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }
 
 /* Interaction Cues
@@ -130,22 +130,22 @@
 .ui-state-highlight,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
-	color: var( --color-primary );
-	background: var( --background-color-primary--hover );
+	color: var( --color-progressive );
+	background: var( --background-color-progressive-subtle );
 	border-color: var( --border-color-base );
 }
 
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,
 .ui-widget-header .ui-state-highlight a {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 }
 
 .ui-state-error,
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
 	color: var( --color-destructive );
-	background: var( --background-color-destructive );
+	background: var( --background-color-destructive-subtle );
 	border-color: var( --border-color-base );
 }
 
@@ -163,7 +163,7 @@
 
 /* Overlays */
 .ui-widget-overlay {
-	background: var( --background-color-overlay--lighter );
+	background: var( --background-color-backdrop-light );
 	opacity: 1;
 }
 

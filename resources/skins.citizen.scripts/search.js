@@ -163,7 +163,7 @@ function renderSearchClearButton( input ) {
 	clearButton.classList.add( 'citizen-search__clear', 'citizen-search__formButton' );
 	// TODO: Add i18n for the message below
 	// clearButton.setAttribute( 'aria-label', 'Clear search input' );
-	clearIcon.classList.add( 'citizen-ui-icon', 'mw-ui-icon-wikimedia-clear' );
+	clearIcon.classList.add( 'citizen-ui-icon', 'mw-ui-icon-wikimedia-trash' );
 	clearButton.append( clearIcon );
 
 	clearButton.addEventListener( 'click', ( event ) => {
@@ -213,7 +213,7 @@ function initSearch( window ) {
 
 		// Set up primary search box interactions
 		if ( isPrimarySearch ) {
-			const details = document.getElementById( 'citizen-search' );
+			const details = document.getElementById( 'citizen-search-details' );
 			bindOpenOnSlash( window, details, input );
 			// Focus when toggled
 			details.addEventListener( 'toggle', () => {

@@ -14,7 +14,7 @@
 	font-size: var( --font-size-small );
 	line-height: inherit;
 	background-color: var( --color-surface-2 );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .client-nojs .smw-placeholder::after {
@@ -24,13 +24,13 @@
 .smw-personal-jobqueue-watchlist:hover,
 .smw-personal-jobqueue-watchlist:focus,
 .smw-personal-jobqueue-watchlist:active {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 }
 
 .item-count {
 	color: var( --color-base );
 	background-color: var( --color-surface-3 );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .item-count.active {
@@ -46,7 +46,7 @@
 }
 
 .smw-debug-box {
-	background: var( --background-color-warning );
+	background: var( --background-color-warning-subtle );
 	border-color: var( --color-warning );
 }
 
@@ -69,7 +69,7 @@ div.smwtimeline {
 }
 
 .smwtable-striped tbody > tr:hover {
-	background-color: var( --background-color-quiet--hover );
+	background-color: var( --background-color-button-quiet--hover );
 }
 
 .smwtable-clean tr {
@@ -145,7 +145,7 @@ hr.smw-form-horizontalrule {
 }
 
 .smw-column-header {
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 }
 
 .smw-note {
@@ -153,16 +153,16 @@ hr.smw-form-horizontalrule {
 	font-size: var( --font-size-small );
 	line-height: inherit;
 	background-color: var( --color-surface-2 );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-callout-info {
 	background: var( -background-color-primary--hover );
-	border-left-color: var( --color-primary );
+	border-left-color: var( --color-progressive );
 }
 
 .smw-callout-info .title {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 }
 
 .smw-callout-info-light {
@@ -171,11 +171,11 @@ hr.smw-form-horizontalrule {
 }
 
 .smw-callout-info-light .title {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 }
 
 .smw-callout-warning {
-	background: var( --background-color-warning );
+	background: var( --background-color-warning-subtle );
 	border-left-color: var( --color-warning );
 }
 
@@ -184,7 +184,7 @@ hr.smw-form-horizontalrule {
 }
 
 .smw-callout-success {
-	background: var( --background-color-success );
+	background: var( --background-color-success-subtle );
 	border-left-color: var( --color-success );
 }
 
@@ -193,7 +193,7 @@ hr.smw-form-horizontalrule {
 }
 
 .smw-callout-error {
-	background: var( --background-color-destructive );
+	background: var( --background-color-destructive-subtle );
 	border-left-color: var( --color-destructive );
 }
 
@@ -201,8 +201,8 @@ hr.smw-form-horizontalrule {
 	color: var( --color-base );
 	background: var( --color-surface-1 );
 	border: 0;
-	border-radius: var( --border-radius--small );
-	box-shadow: var( --box-shadow-dialog );
+	border-radius: var( --border-radius-base );
+	box-shadow: var( --box-shadow-drop-xx-large );
 }
 
 .autocomplete-suggestion {
@@ -210,11 +210,11 @@ hr.smw-form-horizontalrule {
 }
 
 .autocomplete-selected {
-	background: var( --background-color-primary--active );
+	background: var( --background-color-progressive-subtle );
 }
 
 .autocomplete-suggestions strong {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 }
 
 .autocomplete-group strong {
@@ -222,12 +222,12 @@ hr.smw-form-horizontalrule {
 }
 
 .smw-breadcrumb-arrow-right {
-	border-left-color: var( --color-base--subtle );
+	border-left-color: var( --color-subtle );
 }
 
 .smw-ask-action-btn,
 .smw-action-btn {
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-ask-action-btn-lgrey,
@@ -258,32 +258,32 @@ a.smw-ask-action-btn-lgrey:active,
 .smw-ask-action-btn-lblue,
 a.smw-ask-action-btn-lblue:visited {
 	color: var( --color-inverted-primary );
-	background-color: var( --color-primary );
-	border-color: var( --color-primary );
+	background-color: var( --color-progressive );
+	border-color: var( --color-progressive );
 }
 
 a.smw-ask-action-btn-lblue:hover {
 	color: var( --color-inverted-primary );
-	background-color: var( --color-primary--hover );
-	border-color: var( --color-primary--hover );
+	background-color: var( --color-progressive--hover );
+	border-color: var( --color-progressive--hover );
 }
 
 // Added active state
 a.smw-ask-action-btn-lblue:active {
 	color: var( --color-inverted-primary );
-	background-color: var( --color-primary--active );
-	border-color: var( --color-primary--active );
+	background-color: var( --color-progressive--active );
+	border-color: var( --color-progressive--active );
 }
 
 .smw-page-indicator {
 	color: var( --background-color-icon );
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-protection-indicator {
 	color: var( --background-color-icon );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-protection-indicator.with-border {
@@ -291,15 +291,15 @@ a.smw-ask-action-btn-lblue:active {
 }
 
 .smw-page-indicator.usage-count.moderate {
-	color: var( --color-primary );
-	background-color: var( --background-color-primary--hover );
-	border-color: var( --background-color-primary--hover );
+	color: var( --color-progressive );
+	background-color: var( --background-color-progressive-subtle );
+	border-color: var( --background-color-progressive-subtle );
 }
 
 .smw-page-indicator.usage-count.high {
 	color: var( --color-destructive );
-	background-color: var( --background-color-destructive );
-	border-color: var( --background-color-destructive );
+	background-color: var( --background-color-destructive-subtle );
+	border-color: var( --background-color-destructive-subtle );
 }
 
 .mw-json .value,
@@ -309,7 +309,7 @@ a.smw-ask-action-btn-lblue:active {
 
 .ns-112.action-submit .error {
 	color: var( --color-destructive );
-	background: var( --background-color-destructive );
+	background: var( --background-color-destructive-subtle );
 	border-left-color: var( --color-destructive );
 }
 
@@ -325,7 +325,7 @@ a.smw-ask-action-btn-lblue:active {
 .smw-dropdown > a,
 .smw-dropdown > button {
 	font-family: inherit;
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 	background-color: transparent;
 	border-color: var( --border-color-base );
 }
@@ -336,22 +336,22 @@ a.smw-ask-action-btn-lblue:active {
 
 .smw-dropdown > a::before,
 .smw-dropdown > button::before {
-	border-top-color: var( --color-base--emphasized );
+	border-top-color: var( --color-emphasized );
 }
 
 .smw-dropdown .smw-dropdown-menu {
 	background-color: var( --color-surface-1 );
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
-	box-shadow: var( --box-shadow-dialog );
+	border-radius: var( --border-radius-base );
+	box-shadow: var( --box-shadow-drop-xx-large );
 }
 
 .smw-dropdown .smw-dropdown-menu li:hover {
-	background-color: var( --background-color-quiet--hover );
+	background-color: var( --background-color-button-quiet--hover );
 }
 
 .smw-dropdown .smw-dropdown-menu li a {
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 }
 
 .smw-dropdown .smw-dropdown-menu .divider {
@@ -375,30 +375,30 @@ a.smw-ask-action-btn-lblue:active {
 // Similar to TabberNeue
 .smw-tabs label.nav-label {
 	font-weight: var( --font-weight-medium );
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }
 
 .smw-tabs label.nav-label:hover {
-	color: var( --color-primary--hover );
-	border-bottom: 2px solid var( --color-primary--hover );
+	color: var( --color-progressive--hover );
+	border-bottom: var( --border-width-thick ) solid var( --color-progressive--hover );
 }
 
 // Added active state
 .smw-tabs label.nav-label:active {
-	color: var( --color-primary--active );
-	border-bottom: 2px solid var( --color-primary--active );
+	color: var( --color-progressive--active );
+	border-bottom: var( --border-width-thick ) solid var( --color-progressive--active );
 }
 
 .smw-tabs input.nav-tab:checked + label.nav-label {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 	border-color: transparent;
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-primary );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-progressive );
 }
 
 .smw-tabs input.nav-tab:checked + label.nav-label.cached {
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-warning );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-warning );
 }
 
 .smw-tabs label.nav-label .smw-tab-icon {
@@ -412,31 +412,31 @@ a.smw-ask-action-btn-lblue:active {
 // Added active state
 .smw-tabs label.nav-label:active .smw-tab-icon,
 .smw-tabs input.nav-tab:checked + label.nav-label .smw-tab-icon {
-	opacity: var( --opacity-icon-base--active );
+	opacity: var( --opacity-icon-base--selected );
 }
 
 @media screen and ( max-width: 800px ) {
 	.smw-tabs input.nav-tab:checked + label.nav-label {
-		background-color: var( --background-color-primary--active );
+		background-color: var( --background-color-progressive-subtle );
 	}
 }
 
 .smw-tabset > label {
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }
 
 .smw-tabset > label::after {
-	background: var( --color-base--subtle );
+	background: var( --color-subtle );
 }
 
 .smw-tabset > input:focus + label,
 .smw-tabset > input:checked + label {
-	color: var( --color-primary );
+	color: var( --color-progressive );
 }
 
 .smw-tabset > input:focus + label::after,
 .smw-tabset > input:checked + label::after {
-	background: var( --color-primary );
+	background: var( --color-progressive );
 }
 
 .smw-tabset > input:focus + label.smw-indicator-severity-error::after,
@@ -460,20 +460,20 @@ a.smw-ask-action-btn-lblue:active {
 .smw-tabset > input:checked + label {
 	margin-bottom: -2px;
 	border-color: transparent;
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-primary );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-progressive );
 }
 
 .smw-tabset > input:checked + label.smw-indicator-severity-error {
 	color: var( --color-destructive );
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-destructive );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-destructive );
 }
 
 .smw-tabset > input:checked + label.smw-indicator-severity-warning {
 	color: var( --color-warning );
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-warning );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-warning );
 }
 
 .tab-panel {
@@ -528,14 +528,14 @@ a.smw-ask-action-btn-lblue:active {
 .smw-factbox input.nav-tab:checked + label.nav-label {
 	background: transparent;
 	border-color: transparent;
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-primary );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-progressive );
 }
 
 .smw-factbox input.nav-tab:checked + label#tab-label-facts-attachment.nav-label {
 	border-color: transparent;
-	border-top: 1px solid transparent;
-	border-bottom: 2px solid var( --color-primary );
+	border-top: var( --border-width-base ) solid transparent;
+	border-bottom: var( --border-width-thick ) solid var( --color-progressive );
 }
 
 .smw-factbox .smwfact {
@@ -580,7 +580,7 @@ a.smw-ask-action-btn-lblue:active {
 }
 
 .smw-list-rule-title {
-	color: var( --color-base--emphasized );
+	color: var( --color-emphasized );
 	border-bottom-color: var( --border-color-base );
 }
 
@@ -595,18 +595,18 @@ a.smw-ask-action-btn-lblue:active {
 
 .smw-indicator-accordion-tab-label {
   background: transparent;
-  color: var( --color-base--subtle );
+  color: var( --color-subtle );
   border-bottom-color: var( --color-surface-0 );
 }
 
 .smw-indicator-accordion-tab-label:hover {
-  background: var( --background-color-quiet--hover );
+  background: var( --background-color-button-quiet--hover );
   color: var( --color-base );
 }
 
 // Added active state
 .smw-indicator-accordion-tab-label:active {
-    background: var( --background-color-quiet--active );
+    background: var( --background-color-button-quiet--active );
     color: var( --color-base );
   }
 
@@ -631,7 +631,7 @@ a.smw-ask-action-btn-lblue:active {
 }
 
 .smw-indicator-accordion-tab .smw-indicator-accordion-tab-label {
-  border-top: 1px solid #ebebeb;
+  border-top: var( --border-width-base ) solid #ebebeb;
   border-bottom: 0px solid var( --color-inverted-fixed );
 }
 
@@ -654,6 +654,9 @@ input:checked + .smw-indicator-accordion-tab-label::after {
 */
 
 // It is not great but it works
-*[ class^='smw-icon-' ] {
-	filter: var( --filter-invert );
+div,
+span {
+	&[ class^='smw-icon-' ] {
+		filter: var( --filter-invert );
+	}
 }

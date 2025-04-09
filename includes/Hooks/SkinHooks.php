@@ -25,21 +25,21 @@ declare( strict_types=1 );
 
 namespace MediaWiki\Skins\Citizen\Hooks;
 
-use ExtensionRegistry;
-use Html;
-use Language;
-use MediaWiki\Hook\BeforePageDisplayHook;
 use MediaWiki\Hook\SidebarBeforeOutputHook;
 use MediaWiki\Hook\SkinBuildSidebarHook;
 use MediaWiki\Hook\SkinEditSectionLinksHook;
+use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
+use MediaWiki\Output\Hook\BeforePageDisplayHook;
+use MediaWiki\Output\OutputPage;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Skin\SkinComponentUtils;
 use MediaWiki\Skins\Citizen\GetConfigTrait;
 use MediaWiki\Skins\Hook\SkinPageReadyConfigHook;
 use MediaWiki\Title\Title;
-use OutputPage;
 use Skin;
 use SkinTemplate;
-use SpecialPage;
 
 /**
  * Hooks to run relating the skin
@@ -111,23 +111,20 @@ class SkinHooks implements
 		$name = empty( $globalToolsId ) ? 'navigation' : preg_replace( '/^p-/', '', $globalToolsId );
 		$bar[$name]['specialpages'] = [
 			'text'  => $skin->msg( 'specialpages' ),
-			'href'  => Skin::makeSpecialUrl( 'Specialpages' ),
+			'href'  => SkinComponentUtils::makeSpecialUrl( 'Specialpages' ),
 			'title' => $skin->msg( 'tooltip-t-specialpages' ),
 			'icon'  => 'specialPages',
 			'id'    => 't-specialpages',
 		];
 
 		if ( $this->getConfigValue( 'EnableUploads', $out ) === true ) {
-			if ( ExtensionRegistry::getInstance()->isLoaded( 'Upload Wizard' ) ) {
-				// Link to Upload Wizard if present
-				$uploadHref = SpecialPage::getTitleFor( 'UploadWizard' )->getLocalURL();
-			} else {
-				// Link to old upload form
-				$uploadHref = Skin::makeSpecialUrl( 'Upload' );
-			}
+			$isUploadWizardEnabled = ExtensionRegistry::getInstance()->isLoaded( 'Upload Wizard' );
 			$bar[$name]['upload'] = [
 				'text'  => $skin->msg( 'upload' ),
-				'href'  => $uploadHref,
+				'href'  => SkinComponentUtils::makeSpecialUrl( $isUploadWizardEnabled ?
+					'UploadWizard' :
+					'Upload'
+				),
 				'title' => $skin->msg( 'tooltip-t-upload' ),
 				'icon'  => 'upload',
 				'id'    => 't-upload',
@@ -161,16 +158,16 @@ class SkinHooks implements
 		if ( isset( $result['veeditsection'] ) ) {
 			self::appendClassToItem(
 				$result['veeditsection']['attribs']['class'],
-				'citizen-editsection-icon mw-ui-icon-wikimedia-edit'
+				'citizen-ui-icon mw-ui-icon-wikimedia-edit'
 			);
 			self::appendClassToItem(
 				$result['editsection']['attribs']['class'],
-				'citizen-editsection-icon mw-ui-icon-wikimedia-wikiText'
+				'citizen-ui-icon mw-ui-icon-wikimedia-wikiText'
 			);
 		} elseif ( isset( $result['editsection'] ) ) {
 			self::appendClassToItem(
 				$result['editsection']['attribs']['class'],
-				'citizen-editsection-icon mw-ui-icon-wikimedia-edit'
+				'citizen-ui-icon mw-ui-icon-wikimedia-edit'
 			);
 		}
 	}
@@ -302,16 +299,10 @@ class SkinHooks implements
 	private static function updateToolboxMenu( &$links ) {
 		// Most icons are not mapped yet in the toolbox menu
 		$iconMap = [
-			'whatlinkshere' => 'articleRedirect',
 			'recentchangeslinked' => 'recentChanges',
 			'print' => 'printer',
-			'permalink' => 'link',
-			'info' => 'infoFilled',
 			'contributions' => 'userContributions',
-			'log' => 'history',
-			'blockip' => 'block',
 			'emailuser' => 'message',
-			'userrights' => 'userGroup',
 			// Extension:Cargo
 			'cargo-pagevalues' => 'database',
 			// Extension:CiteThisPage
@@ -356,8 +347,9 @@ class SkinHooks implements
 				$linkClass = $item['link-class'] ?? [];
 				$newLinkClass = [
 					// Allows Echo to react to clicks
-					'mw-echo-notification-badge-nojs',
-					'citizen-header__button'
+					'citizen-echo-notification-badge',
+					'citizen-header__button',
+					'mw-echo-notification-badge-nojs'
 				];
 				if ( in_array( 'mw-echo-unseen-notifications', $linkClass ) ) {
 					$newLinkClass[] = 'mw-echo-unseen-notifications';

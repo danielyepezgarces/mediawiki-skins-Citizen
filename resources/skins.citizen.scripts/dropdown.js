@@ -3,9 +3,12 @@
  * Based on Vector
  */
 const
-	DROPDOWN_DETAILS_SELECTOR = '.citizen-menu__dropdown',
-	DROPDOWN_SUMMARY_SELECTOR = '.citizen-menu__dropdownButton',
+	DROPDOWN_CONTAINER_SELECTOR = '.citizen-dropdown',
+	DROPDOWN_DETAILS_SELECTOR = '.citizen-dropdown-details',
+	DROPDOWN_SUMMARY_SELECTOR = '.citizen-dropdown-summary',
 	DROPDOWN_TARGET_SELECTOR = '.citizen-menu__card';
+
+const isPointerDevice = window.matchMedia( '(hover: hover) and (pointer: fine)' ).matches;
 
 /**
  * Represents a Dropdown menu with enhanced functionality.
@@ -21,9 +24,8 @@ class Dropdown {
 		this.details = details;
 		this.summary = summary;
 		this.target = target;
-		this.dismissOnClickOutside = this.dismissOnClickOutside.bind( this );
 		this.dismissOnEscape = this.dismissOnEscape.bind( this );
-		this.dismissOnFocusLoss = this.dismissOnFocusLoss.bind( this );
+		this.dismissIfExternalEventTarget = this.dismissIfExternalEventTarget.bind( this );
 		this.dismissOnLinkClick = this.dismissOnLinkClick.bind( this );
 		this.onDetailsToggle = this.onDetailsToggle.bind( this );
 	}
@@ -31,17 +33,6 @@ class Dropdown {
 	dismiss() {
 		if ( this.details && this.details.open ) {
 			this.details.open = false;
-		}
-	}
-
-	/**
-	 * Dismiss the target when clicking elsewhere.
-	 *
-	 * @param {Event} event
-	 */
-	dismissOnClickOutside( event ) {
-		if ( !this.target.contains( event.target ) && !this.summary.contains( event.target ) ) {
-			this.dismiss();
 		}
 	}
 
@@ -57,12 +48,12 @@ class Dropdown {
 	}
 
 	/**
-	 * If focus is given to any element outside the target, dismiss the target.
+	 * Dismiss the target when event is outside the target and summary
 	 *
 	 * @param {Event} event
 	 */
-	dismissOnFocusLoss( event ) {
-		if ( !this.details.contains( event.target ) ) {
+	dismissIfExternalEventTarget( event ) {
+		if ( !this.target.contains( event.target ) && !this.summary.contains( event.target ) ) {
 			this.dismiss();
 		}
 	}
@@ -84,8 +75,9 @@ class Dropdown {
 	 */
 	unbind() {
 		this.target.removeEventListener( 'click', this.dismissOnLinkClick );
-		window.removeEventListener( 'click', this.dismissOnClickOutside );
-		window.removeEventListener( 'focusin', this.dismissOnFocusLoss );
+		window.removeEventListener( 'mousedown', this.dismissIfExternalEventTarget );
+		window.removeEventListener( 'touchstart', this.dismissIfExternalEventTarget );
+		window.removeEventListener( 'focusin', this.dismissIfExternalEventTarget );
 		window.removeEventListener( 'keyup', this.dismissOnEscape );
 	}
 
@@ -94,8 +86,9 @@ class Dropdown {
 	 */
 	bind() {
 		this.target.addEventListener( 'click', this.dismissOnLinkClick );
-		window.addEventListener( 'click', this.dismissOnClickOutside );
-		window.addEventListener( 'focusin', this.dismissOnFocusLoss );
+		window.addEventListener( 'mousedown', this.dismissIfExternalEventTarget );
+		window.addEventListener( 'touchstart', this.dismissIfExternalEventTarget, { passive: true } );
+		window.addEventListener( 'focusin', this.dismissIfExternalEventTarget );
 		window.addEventListener( 'keyup', this.dismissOnEscape );
 	}
 
@@ -107,21 +100,45 @@ class Dropdown {
 		}
 	}
 
+	addKeyhint() {
+		if ( !isPointerDevice ) {
+			return;
+		}
+
+		const links = this.target.querySelectorAll( '.mw-list-item > a[accesskey]' );
+		links.forEach( ( link ) => {
+			const keyhintText = window.jQuery.fn.updateTooltipAccessKeys.getAccessKeyPrefix() + link.getAttribute( 'accesskey' );
+			if ( !keyhintText ) {
+				return;
+			}
+			const keyhint = document.createElement( 'span' );
+			keyhint.classList.add( 'citizen-keyboard-hint-key' );
+			keyhint.innerText = keyhintText
+				.replace( /-/g, ' ' )
+				.replace( 'ctrl', '⌃' )
+				.replace( 'shift', '⇧' )
+				.replace( 'option', '⌥' );
+			link.append( keyhint );
+		} );
+	}
+
 	init() {
 		this.details.addEventListener( 'toggle', this.onDetailsToggle );
 		// T295085: Close all dropdown menus when page is unloaded to prevent them
 		// from being open when navigating back to a page.
-		window.addEventListener( 'beforeunload', () => this.dismiss );
+		window.addEventListener( 'beforeunload', this.dismiss.bind( this ) );
+		this.addKeyhint();
 	}
 }
 
 function init() {
-	const dropdowns = document.querySelectorAll( DROPDOWN_DETAILS_SELECTOR );
+	const dropdowns = document.querySelectorAll( DROPDOWN_CONTAINER_SELECTOR );
 
-	dropdowns.forEach( ( details ) => {
+	dropdowns.forEach( ( dropdown ) => {
 		const
-			summary = details.querySelector( DROPDOWN_SUMMARY_SELECTOR ),
-			target = details.querySelector( DROPDOWN_TARGET_SELECTOR );
+			details = dropdown.querySelector( DROPDOWN_DETAILS_SELECTOR ),
+			summary = dropdown.querySelector( DROPDOWN_SUMMARY_SELECTOR ),
+			target = dropdown.querySelector( DROPDOWN_TARGET_SELECTOR );
 
 		if ( !( details && summary && target ) ) {
 			return;

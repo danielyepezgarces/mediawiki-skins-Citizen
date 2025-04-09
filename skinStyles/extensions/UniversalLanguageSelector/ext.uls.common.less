@@ -14,18 +14,18 @@
 .uls-menu {
 	// Prevent ULS scrolling the page to the bottom
 	top: var( --space-md ) !important;
-	border-radius: var( --border-radius--medium );
+	border-radius: var( --border-radius-medium );
 }
 
 .uls-search,
 .uls-language-settings-close-block {
-	border-top-left-radius: var( --border-radius--medium );
-	border-top-right-radius: var( --border-radius--medium );
+	border-top-left-radius: var( --border-radius-medium );
+	border-top-right-radius: var( --border-radius-medium );
 }
 
 .uls-language-list {
-	border-bottom-right-radius: var( --border-radius--medium );
-	border-bottom-left-radius: var( --border-radius--medium );
+	border-bottom-right-radius: var( --border-radius-medium );
+	border-bottom-left-radius: var( --border-radius-medium );
 }
 
 .uls-menu.callout {
@@ -33,16 +33,16 @@
 }
 
 .uls-icon-back {
-	filter: var( --filter-invert );
 	border-right: 0; // filter invert does not like it
 	opacity: var( --opacity-icon-base );
+	filter: var( --filter-invert );
 
 	&:hover {
 		opacity: var( --opacity-icon-base--hover );
 	}
 
 	&:active {
-		opacity: var( --opacity-icon-base--active );
+		opacity: var( --opacity-icon-base--selected );
 	}
 }
 
@@ -52,7 +52,7 @@
 	}
 
 	h3 {
-		color: var( --color-base--subtle );
+		color: var( --color-subtle );
 	}
 }
 

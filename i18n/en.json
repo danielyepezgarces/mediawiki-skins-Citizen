@@ -12,7 +12,14 @@
 	"citizen.js": "/* All JavaScript here will be loaded for users of the Citizen skin */",
 	"citizen-drawer-toggle": "Toggle menu",
 	"citizen-usermenu-toggle": "Toggle personal menu",
+	"citizen-preferences-toggle": "Toggle preferences menu",
+	"citizen-search-poweredby": "Powered by $1",
+	"citizen-search-poweredby-cirrussearch": "Elasticsearch",
+	"citizen-search-poweredby-mediawiki": "MediaWiki",
 	"citizen-search-toggle": "Toggle search",
+	"citizen-search-keyhint-exit": "Exit search",
+	"citizen-search-keyhint-open": "Open search",
+	"citizen-search-keyhint-select": "Select item",
 	"citizen-languages-toggle": "More languages",
 	"citizen-actions-more-toggle": "More actions",
 	"citizen-sitestats-articles-label": "articles",
@@ -27,13 +34,17 @@
 	"citizen-action-addsection": "Add topic",
 	"citizen-jumptotop": "Back to top",
 	
-	"citizen-search-fulltext": "Search for text within pages",
-	
-	"citizen-search-mediasearch": "Search for media",
+	"citizen-search-advancedsearch": "Advanced search",
+	"citizen-search-fulltext": "Search text",
+	"citizen-search-mediasearch": "Search media",
 	"citizen-search-editpage": "Edit or create page",
 	"citizen-search-empty-desc": "Type to start searching",
 	"citizen-search-noresults-title": "Uh oh! No results for $1",
 	"citizen-search-noresults-desc": "Maybe try the options above?",
+
+	"citizen-share": "Share this page",
+	"citizen-share-copied": "URL copied to clipboard!",
+
 	"citizen-tagline": "-",
 	"citizen-tagline-ns-talk": "Discussion page of {{SUBJECTPAGENAME}}",
 	"citizen-tagline-ns-project": "Information about {{SITENAME}}",
@@ -50,6 +61,10 @@
 	"citizen-theme-night-label": "Dark",
 	"citizen-theme-os-label": "Auto",
 	"citizen-theme-exclusion-notice": "This page is always in light mode.",
+
+	"citizen-feature-autohide-navigation-name": "Automatically hide navigation",
+	"citizen-feature-autohide-navigation-0-label": "Off",
+	"citizen-feature-autohide-navigation-1-label": "On",
 
 	"citizen-feature-pure-black-name": "Pure black mode",
 	"citizen-feature-pure-black-0-label": "Off",

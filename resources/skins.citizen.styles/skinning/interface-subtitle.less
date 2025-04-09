@@ -11,16 +11,10 @@
 #contentSub,
 #contentSub2 {
 	overflow: hidden;
-	font-size: var( --font-size-x-small );
-	line-height: var( --line-height-xs );
-	color: var( --color-base--subtle );
 	text-overflow: ellipsis;
-}
-
-// #contentSub can be empty
-#contentSub:not( :empty ),
-#contentSub2 {
-	margin-bottom: var( --space-md );
+	font-size: var( --font-size-x-small );
+	line-height: var( --line-height-xxx-small );
+	color: var( --color-subtle );
 }
 
 // Reduced spacing if both sub1 and 2 exists
@@ -30,9 +24,9 @@
 
 #citizen-tagline-user > span + span::before {
 	margin: 0 var( --space-xxs );
-	content: '·';
 	-webkit-user-select: none;
 	user-select: none;
+	content: '·';
 }
 
 span.subpages {

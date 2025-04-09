@@ -1,62 +1,20 @@
-/*
+/**
  * Citizen
  *
  * Core MediaWiki skin tokens
  * Used by supported extensions and other UI in the MW ecosystem
  * @see https://phabricator.wikimedia.org/T349359
-*/
+ */
 
 @import 'mediawiki.skin.defaults.less';
 
-/*
+/**
  * Codex design tokens
  * @see https://github.com/wikimedia/mediawiki/blob/master/resources/lib/codex-design-tokens/theme-wikimedia-ui.less
- * TODO: Revisit on the next LTS release
  */
-// @import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui.less';
+@import 'mediawiki.skin.codex-design-tokens/theme-wikimedia-ui.less';
 
-/*
- * Backported variables
- * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.skin.defaults.less
- * TODO: Remove unused variables on the next LTS release
- */
-
-// @since 1.41
-@min-width-breakpoint-mobile: 320px;
-@min-width-breakpoint-tablet: 640px;
-@min-width-breakpoint-desktop: 1120px;
-@min-width-breakpoint-desktop-wide: 1680px;
-@max-width-breakpoint-mobile: @min-width-breakpoint-tablet - 1px;
-@max-width-breakpoint-tablet: @min-width-breakpoint-desktop - 1px;
-@max-width-breakpoint-desktop: @min-width-breakpoint-desktop-wide - 1px;
-
-/*
- * Polyfill deprecated variables
- * @see https://github.com/wikimedia/mediawiki/blob/REL1_39/resources/src/mediawiki.less/mediawiki.skin.defaults.less
- * TODO: Remove unused variables on the next LTS release
- */
-
-// deprecated since 1.41
-@width-breakpoint-mobile: @min-width-breakpoint-mobile;
-@width-breakpoint-tablet: @min-width-breakpoint-tablet;
-@width-breakpoint-desktop: @min-width-breakpoint-desktop;
-@width-breakpoint-desktop-wide: @min-width-breakpoint-desktop-wide;
-
-/*
- * Citizen variables override
- */
-
-// @since 1.39
-@color-link: var( --color-link );
-@color-link--visited: var( --color-link );
-@color-link--active: var( --color-link--active );
-@color-link-new: var( --color-link-new );
-@color-link-new--visited: var( --color-link-new );
-@color-link-external: var( --color-link );
-@color-link-external--visited: var( --color-link );
-@color-link-external--active: var( --color-link--active );
-
-// @since 1.41
+// LESS variable override
 @font-size-x-small: var( --font-size-x-small );
 @font-size-small: var( --font-size-small );
 @font-size-medium: var( --font-size-medium );
@@ -64,3 +22,18 @@
 @font-size-x-large: var( --font-size-x-large );
 @font-size-xx-large: var( --font-size-xx-large );
 @font-size-xxx-large: var( --font-size-xxx-large );
+// Bold is too bold for Roboto, semi-bold looks nicer
+@font-weight-bold: var( --font-weight-semi-bold );
+
+/**
+ * Skin variables that are not Codex tokens
+ * @see https://github.com/wikimedia/mediawiki/blob/master/resources/src/mediawiki.less/mediawiki.skin.defaults.less
+ */
+@color-link: var( --color-link );
+@color-link--visited: var( --color-link );
+@color-link--active: var( --color-link--active );
+@color-link-new: var( --color-link-red );
+@color-link-new--visited: var( --color-link-red );
+@color-link-external: var( --color-link );
+@color-link-external--visited: var( --color-link );
+@color-link-external--active: var( --color-link--active );

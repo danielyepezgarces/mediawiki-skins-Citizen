@@ -24,7 +24,7 @@ div#ask legend {
 	font-size: var( --font-size-small );
 	line-height: inherit;
 	background-color: var( --color-surface-2 );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-ask-toplinks-edit {
@@ -34,15 +34,15 @@ div#ask legend {
 .smw-ask-condition fieldset,
 .smw-ask-printhead fieldset {
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 
 	// Add focus state
 	&:focus-within {
-		border-color: var( --color-primary );
-		box-shadow: inset 0 0 0 1px var( --color-primary );
+		border-color: var( --color-progressive );
+		box-shadow: inset 0 0 0 1px var( --color-progressive );
 
 		legend {
-			color: var( --color-primary );
+			color: var( --color-progressive );
 		}
 	}
 }
@@ -68,7 +68,7 @@ div#ask legend {
 	font-size: var( --font-size-small );
 	color: var( --color-base );
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-ask-button-submit input {
@@ -76,25 +76,25 @@ div#ask legend {
 	font-size: var( --font-size-small );
 	font-weight: var( --font-weight-medium );
 	color: var( --color-inverted-primary );
-	background-color: var( --color-primary );
-	border-color: var( --color-primary );
-	border-radius: var( --border-radius--medium );
+	background-color: var( --color-progressive );
+	border-color: var( --color-progressive );
+	border-radius: var( --border-radius-medium );
 
 	&:hover {
-		background-color: var( --color-primary--hover );
-		border-color: var( --color-primary--hover );
+		background-color: var( --color-progressive--hover );
+		border-color: var( --color-progressive--hover );
 	}
 
 	&:active {
-		background-color: var( --color-primary--active );
-		border-color: var( --color-primary--active );
+		background-color: var( --color-progressive--active );
+		border-color: var( --color-progressive--active );
 	}
 }
 
 .smw-ask-button-right {
 	color: var( --color-base );
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .smw-ask-button:hover {
@@ -132,7 +132,7 @@ div#ask legend {
 .smw-ask-format fieldset,
 .smw-ask-options fieldset {
 	border-color: var( --border-color-base );
-	border-radius: var( --border-radius--small );
+	border-radius: var( --border-radius-base );
 }
 
 .strike > span::before,
@@ -150,11 +150,11 @@ div#ask legend {
 }
 
 .slowfade textarea::placeholder {
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }
 
 .export-links li {
-	border-left-color: var( --color-base--subtle );
+	border-left-color: var( --color-subtle );
 }
 
 // Make delete button destructive
@@ -173,5 +173,5 @@ div#ask legend {
 // Options parameter description text
 .smw-ask-parameter-description {
 	font-size: var( --font-size-x-small );
-	color: var( --color-base--subtle );
+	color: var( --color-subtle );
 }
